@@ -1,5 +1,5 @@
 import type { Request, Response , NextFunction } from "express";
-import { createExample } from "../services/example/Example.js";
+import { createExampleFactory } from "../services/example/create.js";
 
 
 
@@ -7,7 +7,7 @@ export async function createExampleController(req:Request, res:Response, next:Ne
         
         try {
 
-            const result = await createExample("insertModel o repo", {id:1,name:"test"})
+            const result = (await createExampleFactory("insertModel o repo")).execute({id:1,name:"test"})
 
             res.status(200).send("create")
             
